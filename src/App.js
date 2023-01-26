@@ -1,9 +1,8 @@
 import Board from './MyComponents/BoardComponents/Board';
-import PlayerHandCards from './MyComponents/BoardComponents/PlayerHandCards/PlayerHandCards';
-import { shuffle } from './helper';
-import { doubleDeck } from './Constants';
+import PlayerCards from './MyComponents/BoardComponents/PlayerCards/PlayerCards';
 import PlayerListing from './MyComponents/BoardComponents/PlayerListing/PlayerListing';
 import NoOfPlayingPlayers from './MyComponents/BoardComponents/PlayerListing/NoOfPlayingPlayers';
+import { allPlayerCards } from './Constants';
 
 import './App.css';
 
@@ -12,7 +11,7 @@ function App() {
     <div id="dashboard">
       {/* <!-- PlayerCards --> */}
       <div id="playerCards">
-        <PlayerHandCards shuffle={shuffle(doubleDeck)} />
+        <PlayerCards />
       </div>
       {/* <!-- EndPlayerCards --> */}
 
@@ -47,6 +46,5 @@ function App() {
     </div>
   );
 }
-
-export const remainingshuffleDeck = shuffle(doubleDeck);
+console.log("Players Cards", allPlayerCards)
 export default App;

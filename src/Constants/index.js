@@ -26,11 +26,11 @@ export let playerName = ["Hadi", "Rafay", "Random", "Random2", "Random3", "Rando
 export let teamgroups = [];
 export let currentPlayer = 0;
 export let doubleDeck = [...cards, ...cards];
-export let allplayerCards = [];
+export let allPlayerCards = [];
 
 export let player = {
     turn: true,
     color: color[currentPlayer],
-    cards: allplayerCards[currentPlayer],
-    playern: playerName[currentPlayer]
+    cards: allPlayerCards[currentPlayer],
+    playerName: playerName[currentPlayer]
 }
