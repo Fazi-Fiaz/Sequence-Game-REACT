@@ -1,32 +1,33 @@
 import { playerName, maxPlayerCards } from '../../../Constants';
+import Mapping from './Mapping';
 import { CreateCardsList } from '../CreateCardsList';
 import { v4 } from 'uuid';
+// import { useRef } from 'react';
 
-export const PlayerCardListing = (props) => {
-
+export const PlayerCardListing = ({ shuffle, id, setData, setUseMapId }) => {
     const cardClickFunction = (id) => {
-        console.log("Card ID Card Listing Component", id);
+        setUseMapId(id);
     }
     let singlePlayerCard = [];
     let itemList = [];
     for (let i = 0; i < maxPlayerCards; i++) {
         let elem = <CreateCardsList
             className='handcard'
-            id={props.shuffle[0]}
-            srcimg={require(`../../../assets/cards/${props.shuffle[0]}.png`)}
+            id={shuffle[0]}
+            srcimg={require(`../../../assets/cards/${shuffle[0]}.png`)}
             cardClickFunction={cardClickFunction}
             key={v4()}
         />
-        singlePlayerCard.push(props.shuffle[0]);
-        props.shuffle.shift();
+        singlePlayerCard.push(shuffle[0]);
+        shuffle.shift();
         itemList.push(elem);
     }
-    props.setdata(singlePlayerCard);
+    setData(singlePlayerCard);
     return (
-        <div className='positions' id={`positions${props.id}`}>
-            <div>{playerName[props.id]}</div>
+        <div className='positions' id={`positions${id}`}>
+            <div>{playerName[id]}</div>
             <div className='hand-cards'>
-                <ul id={`user${props.id}`}>
+                <ul id={`user${id}`}>
                     {itemList}
                 </ul>
             </div>
