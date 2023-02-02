@@ -2,7 +2,7 @@ import { CreateCardsList } from './CreateCardsList';
 import { v4 } from 'uuid';
 import { boardDeck } from '../../../src/Constants'
 
-const Board = () => {
+const Board = ({ BoardClickCardId }) => {
     let itemList = [];
     let showBoardCards = () => {
         let concat = 0
@@ -14,7 +14,13 @@ const Board = () => {
                     liValue = <CreateCardsList className='disabledelement' dataX={x} dataY={y} emptyDiv={emptyDiv} srcimg={require(`../../assets/cards/giga${x}${y}.png`)} key={v4()} />;
                 }
                 else {
-                    liValue = <CreateCardsList className='disabledelement' dataX={x} dataY={y} id={concat} cardId={boardDeck[concat]} srcimg={require(`../../assets/cards/${boardDeck[concat]}.png`)} key={v4()} />;
+                    liValue = <CreateCardsList
+                        className='disabledelement'
+                        dataX={x} dataY={y}
+                        id={concat}
+                        cardId={boardDeck[concat]}
+                        PlayerClickCardId={BoardClickCardId}
+                        srcimg={require(`../../assets/cards/${boardDeck[concat]}.png`)} key={v4()} />;
                     concat++
                 }
                 itemList.push(liValue);

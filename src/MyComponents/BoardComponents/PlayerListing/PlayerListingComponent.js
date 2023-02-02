@@ -1,10 +1,13 @@
 import React from 'react'
-import { playerName, noOfTeams } from '../../../Constants';
+import { playerName, noOfTeams, currentPlayer } from '../../../Constants';
 
 function PlayerListingComponent({ id }) {
     let className = "players";
     if (noOfTeams > 0) {
         className += " half team" + (id % noOfTeams);
+    }
+    if (id == currentPlayer) {
+        className += " active";
     }
     return (
         <div id={`player${id}`} className={className}>

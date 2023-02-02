@@ -4,10 +4,7 @@ import { CreateCardsList } from '../CreateCardsList';
 import { v4 } from 'uuid';
 // import { useRef } from 'react';
 
-export const PlayerCardListing = ({ shuffle, id, setData, setUseMapId }) => {
-    const cardClickFunction = (id) => {
-        setUseMapId(id);
-    }
+export const PlayerCardListing = ({ shuffle, id, setData, PlayerClickCardId }) => {
     let singlePlayerCard = [];
     let itemList = [];
     for (let i = 0; i < maxPlayerCards; i++) {
@@ -15,7 +12,7 @@ export const PlayerCardListing = ({ shuffle, id, setData, setUseMapId }) => {
             className='handcard'
             id={shuffle[0]}
             srcimg={require(`../../../assets/cards/${shuffle[0]}.png`)}
-            cardClickFunction={cardClickFunction}
+            PlayerClickCardId={PlayerClickCardId}
             key={v4()}
         />
         singlePlayerCard.push(shuffle[0]);

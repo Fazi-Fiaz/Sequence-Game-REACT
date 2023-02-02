@@ -13,7 +13,8 @@ export const CreateCardsList = (props) => {
         (
           <li className={props.className}
             id={props.id}
-            data-x={props.dataX} onClick={() => props.cardClickFunction(props.id)} data-y={props.dataY} card={props.cardId}>
+            data-x={props.dataX}
+            onClick={(e) => props.PlayerClickCardId(e)} data-y={props.dataY} card={props.cardId}>
             <img src={props.srcimg} alt={props.id} />
           </li>
         )
