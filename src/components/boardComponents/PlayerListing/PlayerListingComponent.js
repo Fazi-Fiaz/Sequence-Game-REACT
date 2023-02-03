@@ -1,5 +1,5 @@
 import React from 'react'
-import { playerName, noOfTeams, currentPlayer } from '../../../Constants';
+import { playerName, noOfTeams, currentPlayer } from '../../../constants';
 
 function PlayerListingComponent({ id }) {
     let className = "players";

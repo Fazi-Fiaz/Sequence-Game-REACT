@@ -1,4 +1,4 @@
-import { maxPlayers } from "../../../Constants"
+import { maxPlayers } from "../../../constants"
 
 function NoOfPlayingPlayers() {
     return (

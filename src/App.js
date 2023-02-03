@@ -1,4 +1,4 @@
-import PlayingPage from './MyComponents/BoardComponents/PlayingPage';
+import PlayingPage from './components/boardComponents/PlayingPage';
 
 import './App.css';
 

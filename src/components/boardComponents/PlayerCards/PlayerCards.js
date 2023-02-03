@@ -1,4 +1,4 @@
-import { maxPlayers, allPlayerCards } from '../../../Constants';
+import { maxPlayers, allPlayerCards } from '../../../constants';
 import { PlayerCardListing } from './PlayerCardListing';
 import { v4 } from 'uuid';
 import { useCallback } from 'react';

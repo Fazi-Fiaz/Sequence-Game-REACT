@@ -1,6 +1,6 @@
 import { CreateCardsList } from './CreateCardsList';
 import { v4 } from 'uuid';
-import { boardDeck } from '../../../src/Constants'
+import { boardDeck } from '../../constants'
 
 const Board = ({ BoardClickCardId }) => {
     let itemList = [];

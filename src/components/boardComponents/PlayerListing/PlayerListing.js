@@ -1,4 +1,4 @@
-import { maxPlayers } from '../../../Constants';
+import { maxPlayers } from '../../../constants';
 import PlayerListingComponent from './PlayerListingComponent';
 import { v4 } from 'uuid';
 

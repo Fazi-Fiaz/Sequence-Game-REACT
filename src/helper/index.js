@@ -1,5 +1,5 @@
-import doubleDeck from '../Constants'
-import { id } from '../MyComponents/BoardComponents/PlayerCards/PlayerCardListing'
+import doubleDeck from '../constants'
+import { id } from '../components/boardComponents/PlayerCards/PlayerCardListing'
 
 export const shuffle = (doubleDeck) => {
     const arr_val = doubleDeck;

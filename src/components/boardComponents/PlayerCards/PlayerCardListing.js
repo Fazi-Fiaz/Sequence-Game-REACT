@@ -1,4 +1,4 @@
-import { playerName, maxPlayerCards } from '../../../Constants';
+import { playerName, maxPlayerCards } from '../../../constants';
 import Mapping from './Mapping';
 import { CreateCardsList } from '../CreateCardsList';
 import { v4 } from 'uuid';

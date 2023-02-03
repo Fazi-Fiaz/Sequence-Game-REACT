@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { currentPlayer } from '../../../Constants';
+import { currentPlayer } from '../../../constants';
 
 function Mapping({
     id

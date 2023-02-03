@@ -2,8 +2,9 @@ import Board from './Board';
 import PlayerCards from './PlayerCards/PlayerCards';
 import PlayerListing from './PlayerListing/PlayerListing';
 import NoOfPlayingPlayers from './PlayerListing/NoOfPlayingPlayers';
-import { currentPlayer, player, color, discardCards, allPlayerCards, doubleDeck } from '../../Constants';
-import { shuffle } from '../../Helper';
+import { currentPlayer, player, color, discardCards, allPlayerCards, doubleDeck, noOfTurns, noOfTeams, currentTeam, maxPlayers, playerName } from '../../constants';
+import { shuffle } from '../../helper';
+import StaticCards from './StaticCards';
 import Mapping from './PlayerCards/Mapping';
 import { useState } from 'react';
 
@@ -13,45 +14,54 @@ function PlayingPage() {
     // const [useMapId, setUseMapId] = useState(null);
     return (
         <div id="dashboard">
-            {/* <!-- PlayerCards --> */}
+
+            {/* PlayerCards */}
             <div id="playerCards">
                 <PlayerCards PlayerClickCardId={PlayerClickCardId} shuffle={shuffles} />
                 {/* <Mapping id={useMapId} /> */}
             </div>
-            {/* <!-- EndPlayerCards --> */}
 
-            {/* <!-- Main Board --> */}
+            {/* Main Board */}
             <Board BoardClickCardId={BoardClickCardId} />
-            {/* <!-- End Main Board --> */}
 
-            {/* <!-- Players --> */}
+            {/* Players */}
             <div id="no-of-player">
                 <NoOfPlayingPlayers />
                 <div id="displayPlayer">
                     <PlayerListing />
                 </div>
             </div>
-            {/* <!-- End Players --> */}
 
-            {/* <!-- DisCard Cards --> */}
-            <div className="discardCards">
-                <div className="placements">
-                    <img id="disID" src={require('../../assets/cards/jokar.png')} alt="Discards Cards" />
-                </div>
-            </div>
-            {/* <!-- End DisCard Cards --> */}
+            {/* Static Bottom Cards */}
+            <StaticCards />
 
-            {/* <!-- Remaining Deck --> */}
-            <div className="remianing-deck">
-                <div className="placements">
-                    <img id="disID" src={require('../../assets/cards/card.jpeg')} alt="" />
-                </div>
-            </div>
-            {/* <!-- End Remaining Deck --> */}
         </div>
     );
 }
 
+// Switch Players
+const switchPlayers = () => {
+    noOfTurns = noOfTurns + 1;
+    currentPlayer = (noOfTurns % maxPlayers);
+    console.log("Player Turn", currentPlayer);
+    currentTeam = currentPlayer % noOfTeams;
+    if (noOfTeams > 0) {
+        player = {
+            turn: true,
+            color: color[currentTeam],
+            cards: allPlayerCards[currentPlayer],
+            playerName: playerName[currentPlayer]
+        }
+    }
+    else {
+        player = {
+            turn: true,
+            color: color[currentPlayer],
+            cards: allPlayerCards[currentPlayer],
+            playerName: playerName[currentPlayer]
+        }
+    }
+}
 // Reassign Hand Cards 
 const reassignPlayerCards = (cardid) => {
     let remaininghandcard = document.querySelectorAll(`#user${currentPlayer} li`);
@@ -67,7 +77,7 @@ const reassignPlayerCards = (cardid) => {
                     li.setAttribute('id', shuffles[0]);
                     li.setAttribute('class', 'handcard');
                     let img = document.createElement("img");
-                    img.setAttribute('src', `src/cards/${shuffles[0]}.png`);
+                    img.setAttribute('src', require(`../../assets/cards/${shuffles[0]}.png`));
                     player.cards.push(shuffles[0]);
                     shuffles.shift();
                     li.appendChild(img);
@@ -75,7 +85,6 @@ const reassignPlayerCards = (cardid) => {
                 }
                 count++;
             }
-            console.log("Shuffle", shuffles)
         }
     });
 }
@@ -83,7 +92,7 @@ const reassignPlayerCards = (cardid) => {
 // Discards Cards Function
 const discardCardsFunc = function () {
     let diss = discardCards[0];
-    document.getElementById('disID').setAttribute("src", `../../assets/cards/${diss}.png`);
+    document.getElementById('disID').setAttribute("src", require(`../../assets/cards/${diss}.png`));
 }
 
 // Discard Cards
@@ -97,7 +106,6 @@ const pushCard = (cardinfo, cardid) => {
         }
     }
     // winningCombination(cardinfo);
-    // noOfTurns++;
     discardCardsFunc();
     // switchPlayers();
     // matchHandWithBoardCards();
