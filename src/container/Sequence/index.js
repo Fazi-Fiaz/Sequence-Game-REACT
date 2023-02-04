@@ -1,5 +1,5 @@
 import Board from '../../components/BoardComponents/Board'
-// import PlayerCards from '../components/BoardComponents/PlayerCards/PlayerCards'
+import PlayerCardListing from '../../components/PlayerCardListing'
 // import PlayerListing from '../components/BoardComponents/PlayerListing/PlayerListing'
 // import NoOfPlayingPlayers from '../components/BoardComponents/PlayerListing/NoOfPlayingPlayers'
 import { teamColors, doubleDeck } from '../../constants'
@@ -14,6 +14,7 @@ function Sequence () {
   const [numberOfCardPerPerson, setNumberOfCardPerPerson] = useState(7)
   const [totalSequenceCount, setTotalSequenceCount] = useState(2)
   const [playersInfo, setPlayersInfo] = useState([])
+  const [activePlayer, setActivePlayer] = useState(0)
   const [shuffledCards, setShuffledCards] = useState(shuffle(doubleDeck))
 
   // create inital card sets for players
@@ -34,7 +35,29 @@ function Sequence () {
     setPlayersInfo(players)
   }, [numberOfCardPerPerson, numberOfPlayers, shuffledCards])
 
-  return <>{playersInfo && <Board />}</>
+  const playerSelectsCards = e => {
+    // let id = e.currentTarget.id
+    playersInfo[activePlayer].cards.push(shuffledCards[10])
+    setActivePlayer(activePlayer ? 0 : 1)
+  }
+
+  const playerPlacesCard = e => {}
+
+  return (
+    <div id='dashboard'>
+      {/* <!-- PlayerCards --> */}
+      <div id='playerCards'>
+        {playersInfo && (
+          <PlayerCardListing
+            activePlayer={playersInfo[activePlayer]}
+            playerSelectsCards={playerSelectsCards}
+          />
+        )}
+      </div>
+      {/* <!-- EndPlayerCards --> */}
+      {playersInfo && <Board />}
+    </div>
+  )
 }
 // const mappingFunction = id => {
 //   let boardCardCheck = document.querySelectorAll(`#board-cards li[card=${id}]`)

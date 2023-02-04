@@ -1,10 +1,12 @@
 import { CreateCardsList } from '../CreateCardsList'
 import { v4 } from 'uuid'
 import { boardDeck } from '../../constants'
+import { useEffect, useState } from 'react'
 
 const Board = ({ BoardClickCardId }) => {
-  let itemList = []
-  let showBoardCards = () => {
+  const [boardCards, setBoardCards] = useState([])
+  useEffect(() => {
+    let itemList = []
     let concat = 0
     let liValue
     for (let x = 0; x < 10; x++) {
@@ -44,9 +46,9 @@ const Board = ({ BoardClickCardId }) => {
         itemList.push(liValue)
       }
     }
-  }
-  showBoardCards()
-  return <ul id='board-cards'>{itemList}</ul>
+    setBoardCards(itemList)
+  }, [setBoardCards, BoardClickCardId])
+  return <ul id='board-cards'>{boardCards}</ul>
 }
 
 export default Board
