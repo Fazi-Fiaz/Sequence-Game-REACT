@@ -1,10 +1,8 @@
-import PlayingPage from './MyComponents/BoardComponents/PlayingPage';
+import Sequence from './container/Sequence'
 
-import './App.css';
+import './App.css'
 
-function App() {
-  return (
-    <PlayingPage />
-  );
+function App () {
+  return <Sequence />
 }
-export default App;
+export default App
