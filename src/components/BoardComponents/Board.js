@@ -42,12 +42,15 @@ const Board = ({ enableSelectedBoardCard, cardPlacementHistory, BoardClickCardId
         }
         setBoardCards(itemList)
     }, [setBoardCards])
-
+    console.log("enableSelectedBoardCard", enableSelectedBoardCard);
     return (
         <ul id='board-cards'>{boardCards && boardCards.map((ele) =>
             <CreateCardsList
                 className={ele.class + (cardPlacementHistory[ele.id] ? cardPlacementHistory[ele.id] : '') +
-                    (!ele.color && enableSelectedBoardCard === ele?.cardId ? ' enable' : '')}
+                    (!ele.color && enableSelectedBoardCard === ele?.cardId ? ' enable' : '')
+                    // (!ele.color && enableSelectedBoardCard === 'JD' || enableSelectedBoardCard === "JC" ? ' enable' : '') +
+                    // (ele.color && enableSelectedBoardCard === 'JS' || ele.color && enableSelectedBoardCard === "JH" ? ' enable' : '')
+                }
                 color={cardPlacementHistory[ele.id] ? cardPlacementHistory[ele.id] : ''}
                 dataX={ele.dataX}
                 dataY={ele.dataY}
