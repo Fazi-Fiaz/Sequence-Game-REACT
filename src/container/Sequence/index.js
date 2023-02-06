@@ -38,7 +38,8 @@ function Sequence() {
   const playerSelectsCards = e => {
     // let id = e.currentTarget.id
     playersInfo[activePlayer].cards.push(shuffledCards[10])
-    setActivePlayer(activePlayer ? 0 : 1)
+    let currentPlayer = activePlayer + 1;
+    setActivePlayer(currentPlayer % numberOfPlayers)
   }
 
   const playerPlacesCard = e => { }
