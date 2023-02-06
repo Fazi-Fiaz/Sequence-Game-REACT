@@ -4,51 +4,51 @@ import { boardDeck } from '../../constants'
 import { useEffect, useState } from 'react'
 
 const Board = ({ BoardClickCardId }) => {
-  const [boardCards, setBoardCards] = useState([])
-  useEffect(() => {
-    let itemList = []
-    let concat = 0
-    let liValue
-    for (let x = 0; x < 10; x++) {
-      for (let y = 0; y < 10; y++) {
-        if (
-          (x == 0 && y == 0) ||
-          (x == 9 && y == 0) ||
-          (x == 0 && y == 9) ||
-          (x == 9 && y == 9)
-        ) {
-          let emptyDiv = 'empty-img'
-          liValue = (
-            <CreateCardsList
-              className='disabledelement'
-              dataX={x}
-              dataY={y}
-              emptyDiv={emptyDiv}
-              srcimg={require(`../../assets/cards/giga${x}${y}.png`)}
-              key={v4()}
-            />
-          )
-        } else {
-          liValue = (
-            <CreateCardsList
-              className='disabledelement'
-              dataX={x}
-              dataY={y}
-              id={concat}
-              cardId={boardDeck[concat]}
-              PlayerClickCardId={BoardClickCardId}
-              srcimg={require(`../../assets/cards/${boardDeck[concat]}.png`)}
-              key={v4()}
-            />
-          )
-          concat++
+    const [boardCards, setBoardCards] = useState([])
+    useEffect(() => {
+        let itemList = []
+        let concat = 0
+        let liValue
+        for (let x = 0; x < 10; x++) {
+            for (let y = 0; y < 10; y++) {
+                if (
+                    (x == 0 && y == 0) ||
+                    (x == 9 && y == 0) ||
+                    (x == 0 && y == 9) ||
+                    (x == 9 && y == 9)
+                ) {
+                    let emptyDiv = 'empty-img'
+                    liValue = (
+                        <CreateCardsList
+                            className='disabledelement'
+                            dataX={x}
+                            dataY={y}
+                            emptyDiv={emptyDiv}
+                            srcimg={require(`../../assets/cards/giga${x}${y}.png`)}
+                            key={v4()}
+                        />
+                    )
+                } else {
+                    liValue = (
+                        <CreateCardsList
+                            className='disabledelement'
+                            dataX={x}
+                            dataY={y}
+                            id={concat}
+                            cardId={boardDeck[concat]}
+                            PlayerClickCardId={BoardClickCardId}
+                            srcimg={require(`../../assets/cards/${boardDeck[concat]}.png`)}
+                            key={v4()}
+                        />
+                    )
+                    concat++
+                }
+                itemList.push(liValue)
+            }
         }
-        itemList.push(liValue)
-      }
-    }
-    setBoardCards(itemList)
-  }, [setBoardCards, BoardClickCardId])
-  return <ul id='board-cards'>{boardCards}</ul>
+        setBoardCards(itemList)
+    }, [setBoardCards, BoardClickCardId])
+    return <ul id='board-cards'>{boardCards}</ul>
 }
 
 export default Board

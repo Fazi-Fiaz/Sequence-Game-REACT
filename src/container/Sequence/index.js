@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 // let shuffles = shuffle(doubleDeck)
-function Sequence () {
+function Sequence() {
   const [numberOfPlayers, setNumberOfPlayers] = useState(2)
   // const [numberOfTeams, setNumberOfTeams] = useState(2)
   const [numberOfCardPerPerson, setNumberOfCardPerPerson] = useState(7)
@@ -41,7 +41,7 @@ function Sequence () {
     setActivePlayer(activePlayer ? 0 : 1)
   }
 
-  const playerPlacesCard = e => {}
+  const playerPlacesCard = e => { }
 
   return (
     <div id='dashboard'>
