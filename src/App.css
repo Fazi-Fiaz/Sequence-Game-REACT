@@ -89,8 +89,9 @@ body {
   position: relative;
 }
 
-.disabledelement .empty-img img {
+.disabledelement.empty-img img {
   opacity: 1;
+  width: 63%;
 }
 
 .disabledelement {
