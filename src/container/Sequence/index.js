@@ -34,9 +34,13 @@ function Sequence() {
       }
       players.push(singlePlayerInfo)
     }
-    setPlayersInfo(players);
+    setPlayersInfo(players)
 
-    setShuffledCards(allCardsShuffled.slice(numberOfCardPerPlayer * numberOfPlayers - allCardsShuffled.length));
+    setShuffledCards(
+      allCardsShuffled.slice(
+        numberOfCardPerPlayer * numberOfPlayers - allCardsShuffled.length
+      )
+    )
   }, [numberOfCardPerPlayer, numberOfPlayers])
 
   const playerSelectsCards = e => {
@@ -44,26 +48,28 @@ function Sequence() {
     setEnableSelectedBoardCard(id)
   }
 
-  const BoardClickCardId = (e) => {
+  const BoardClickCardId = e => {
     let eleObj = {}
-    eleObj[e.currentTarget.id] = playersInfo[activePlayer].teamColor;
+    eleObj[e.currentTarget.id] = playersInfo[activePlayer].teamColor
     setCardPlacementHistory({
       ...cardPlacementHistory,
       ...eleObj
-    });
+    })
 
-    let playerTurn = activePlayer + 1 % numberOfPlayers;
+    let playerTurn = activePlayer + (1 % numberOfPlayers)
     if (playerTurn >= numberOfPlayers) {
       playerTurn = 0
     }
     const newCardForPlayer = shuffledCards.shift()
-    const alreadyInCards = playersInfo[activePlayer].cards.indexOf(enableSelectedBoardCard)
+    const alreadyInCards = playersInfo[activePlayer].cards.indexOf(
+      enableSelectedBoardCard
+    )
     if (alreadyInCards > -1) {
-      playersInfo[activePlayer].cards.splice(alreadyInCards, 1);
+      playersInfo[activePlayer].cards.splice(alreadyInCards, 1)
     }
     playersInfo[activePlayer].cards.push(newCardForPlayer)
 
-    setActivePlayer(playerTurn);
+    setActivePlayer(playerTurn)
     setShuffledCards(shuffledCards)
     setEnableSelectedBoardCard(null)
   }
@@ -80,9 +86,13 @@ function Sequence() {
         )}
       </div>
       {/* <!-- EndPlayerCards --> */}
-      {playersInfo && <Board enableSelectedBoardCard={enableSelectedBoardCard}
-        BoardClickCardId={BoardClickCardId}
-        cardPlacementHistory={cardPlacementHistory} />}
+      {playersInfo && (
+        <Board
+          enableSelectedBoardCard={enableSelectedBoardCard}
+          BoardClickCardId={BoardClickCardId}
+          cardPlacementHistory={cardPlacementHistory}
+        />
+      )}
     </div>
   )
 }
