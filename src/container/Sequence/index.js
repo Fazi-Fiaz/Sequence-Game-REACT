@@ -30,13 +30,13 @@ function Sequence() {
         cards: allCardsShuffled.slice(
           i * numberOfCardPerPlayer,
           (i + 1) * numberOfCardPerPlayer
-        ),
+        )
       }
       players.push(singlePlayerInfo)
     }
     setPlayersInfo(players);
 
-    setShuffledCards(allCardsShuffled.slice((numberOfCardPerPlayer * numberOfPlayers) - allCardsShuffled.length));
+    setShuffledCards(allCardsShuffled.slice(numberOfCardPerPlayer * numberOfPlayers - allCardsShuffled.length));
   }, [numberOfCardPerPlayer, numberOfPlayers])
 
   const playerSelectsCards = e => {

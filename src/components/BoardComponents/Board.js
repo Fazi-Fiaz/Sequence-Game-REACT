@@ -1,9 +1,13 @@
 import { CreateCardsList } from '../CreateCardsList'
 import { v4 } from 'uuid'
-import { boardDeck } from '../../constants'
+import { boardDeck, doubleEyeJacks, singleEyeJacks } from '../../constants'
 import { useEffect, useState } from 'react'
 
-const Board = ({ enableSelectedBoardCard, cardPlacementHistory, BoardClickCardId }) => {
+const Board = ({
+    enableSelectedBoardCard,
+    cardPlacementHistory,
+    BoardClickCardId
+}) => {
     const [boardCards, setBoardCards] = useState([])
     useEffect(() => {
         let itemList = []
@@ -18,7 +22,7 @@ const Board = ({ enableSelectedBoardCard, cardPlacementHistory, BoardClickCardId
                     (x === 9 && y === 9)
                 ) {
                     liValue = {
-                        class: 'disabledelement empty-img',
+                        class: 'disabledelement empty-img ',
                         id: '',
                         cardId: '',
                         srcimg: require(`../../assets/cards/giga${x}${y}.png`),
@@ -26,7 +30,7 @@ const Board = ({ enableSelectedBoardCard, cardPlacementHistory, BoardClickCardId
                     }
                 } else {
                     liValue = {
-                        class: "disabledelement ",
+                        class: 'disabledelement ',
                         dataX: x,
                         dataY: y,
                         id: concat,
@@ -42,25 +46,33 @@ const Board = ({ enableSelectedBoardCard, cardPlacementHistory, BoardClickCardId
         }
         setBoardCards(itemList)
     }, [setBoardCards])
-    console.log("enableSelectedBoardCard", enableSelectedBoardCard);
+
     return (
-        <ul id='board-cards'>{boardCards && boardCards.map((ele) =>
-            <CreateCardsList
-                className={ele.class + (cardPlacementHistory[ele.id] ? cardPlacementHistory[ele.id] : '') +
-                    (!ele.color && enableSelectedBoardCard === ele?.cardId ? ' enable' : '')
-                    // (!ele.color && enableSelectedBoardCard === 'JD' || enableSelectedBoardCard === "JC" ? ' enable' : '') +
-                    // (ele.color && enableSelectedBoardCard === 'JS' || ele.color && enableSelectedBoardCard === "JH" ? ' enable' : '')
-                }
-                color={cardPlacementHistory[ele.id] ? cardPlacementHistory[ele.id] : ''}
-                dataX={ele.dataX}
-                dataY={ele.dataY}
-                id={ele.id}
-                cardId={ele.cardId}
-                srcimg={ele.srcimg}
-                key={v4()}
-                PlayerClickCardId={BoardClickCardId}
-            />
-        )}</ul>
+        <ul id='board-cards'>
+            {boardCards &&
+                boardCards.map(ele => (
+                    <CreateCardsList
+                        className={
+                            ele.class +
+                            (cardPlacementHistory[ele.id] ? cardPlacementHistory[ele.id] : '') +
+                            ((enableSelectedBoardCard === ele?.cardId ||
+                                doubleEyeJacks.indexOf(enableSelectedBoardCard) > -1) && !cardPlacementHistory[ele.id]
+                                ? ' enable' : '') +
+                            ((enableSelectedBoardCard === ele?.cardId ||
+                                singleEyeJacks.indexOf(enableSelectedBoardCard) > -1) && cardPlacementHistory[ele.id]
+                                ? ' enable' : '')
+                        }
+                        color={cardPlacementHistory[ele.id] ? cardPlacementHistory[ele.id] : ''}
+                        dataX={ele.dataX}
+                        dataY={ele.dataY}
+                        id={ele.id}
+                        cardId={ele.cardId}
+                        srcimg={ele.srcimg}
+                        key={v4()}
+                        PlayerClickCardId={BoardClickCardId}
+                    />
+                ))}
+        </ul>
     )
 }
 
