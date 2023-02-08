@@ -42,15 +42,13 @@ function Sequence() {
   }, [numberOfCardPerPlayer, numberOfPlayers])
 
   const playerSelectsCards = e => {
-
     const cardClickId = e.currentTarget.id;
     const cardValues = Object.values(cardPlacementHistory)
     const alreadyPlaced = cardValues.filter((c) => c.cardId === cardClickId).length
     if (alreadyPlaced > 1) {
       const shouldDiscard = window.confirm('Dead card found. Do you want to discard?')
       if (shouldDiscard) {
-        const alreadyInCards = playersInfo[activePlayer].cards.indexOf(cardClickId)
-        console.log("alreadyInCards", alreadyInCards)
+        const alreadyInCards = playersInfo[activePlayer].cards.indexOf(cardClickId);
         if (alreadyInCards > -1) {
           playersInfo[activePlayer].cards.splice(alreadyInCards, 1)
         }
@@ -66,8 +64,6 @@ function Sequence() {
           setActivePlayer(playerTurn)
         }
         setShuffledCards(shuffledCards)
-        // setEnableSelectedBoardCard(null)
-        // return
       }
     }
     setEnableSelectedBoardCard(cardClickId)
