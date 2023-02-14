@@ -52,7 +52,7 @@
 //     'KD',
 //     'KC'
 // ]
-export const cards = ['AS', 'AH', 'AD', 'AC', 'JD', 'JS']
+export const cards = ['AS', 'JD', 'JD', 'JD', 'JD', 'JS']
 export const boardDeck = [
     'AC',
     'KC',
@@ -152,26 +152,11 @@ export const boardDeck = [
     'S10'
 ]
 
-export const currentTeam = 0
-export const noOfTurns = 0
 export const noOfTeams = 0
 export const winNo = 2
-export const maxPlayers = 2
-export const maxPlayerCards = 6
 export const winningcombinations = 2
 export const teamColors = ['red', 'blue', 'green']
-export let playerName = [
-    'Hadi',
-    'Rafay',
-    'Random',
-    'Random2',
-    'Random3',
-    'Random4'
-]
-export let teamgroups = []
-export let currentPlayer = 0
 export let doubleDeck = [...cards, ...cards]
-export let allPlayerCards = []
 export let discardCards = []
 export const doubleEyeJacks = ['JD', 'JC']
 export const singleEyeJacks = ['JS', 'JH']

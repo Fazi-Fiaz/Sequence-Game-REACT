@@ -353,3 +353,73 @@ img {
 .half {
   width: 50%;
 }
+
+
+/* Landing Page */
+.custom {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.screen-container {
+  background-image: url("./assets/cards/landingbackground.png");
+  background-size: cover;
+  width: fit-content;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: 100% 100%;
+  height: 100vh;
+}
+
+.main-heading {
+  text-align: center;
+  color: white;
+}
+
+.check-box {
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-label {
+  font-weight: bold;
+}
+
+.cus-width-input {
+  width: 30%;
+}
+
+.cus-width {
+  width: 22%;
+}
+
+.drop-down {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 30px;
+  justify-content: center;
+  gap: 3%;
+}
+
+.custom-btn {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-light {
+  padding: 8px 60px;
+}

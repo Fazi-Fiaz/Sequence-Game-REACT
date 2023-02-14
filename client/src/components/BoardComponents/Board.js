@@ -54,7 +54,7 @@ const Board = ({
                     let className = ele.class
                     if (cardPlacementHistory[ele.id]) {
                         className += " " + cardPlacementHistory[ele.id].color
-                        if (singleEyeJacks.indexOf(enableSelectedBoardCard) > -1) {
+                        if ((singleEyeJacks.indexOf(enableSelectedBoardCard) > -1) && !cardPlacementHistory[ele.id].hasOwnProperty('sequence')) {
                             className += " enable"
                         }
                     }
