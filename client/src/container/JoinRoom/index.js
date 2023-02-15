@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { useLocation, useParams } from 'react-router-dom'
 import StartButton from '../../components/LandingComponent/StartButton'
 import TextInputField from '../../components/LandingComponent/TextInputField'
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 const JoinRoom = ({ socket }) => {
   const { roomId } = useParams()
@@ -30,7 +32,7 @@ const JoinRoom = ({ socket }) => {
   })
 
   return (
-    <div className='container'>
+    <div className='join-room container'>
       {!isAuthor && (
         <>
           <TextInputField
@@ -40,11 +42,27 @@ const JoinRoom = ({ socket }) => {
           <StartButton submitValues={submitValues} />
         </>
       )}
-
-      {users &&
-        users.map((e, i) => {
-          return <span key={i}>{e}</span>
-        })}
+      <h2 className='margin-bottom'>Number of Players: </h2>
+      <MDBTable>
+        <MDBTableHead>
+          <tr>
+            <th scope='col'>#</th>
+            <th scope='col'>NAME</th>
+          </tr>
+        </MDBTableHead>
+        <MDBTableBody>
+          {users &&
+            users.map((e, i) => {
+              return (
+                <tr>
+                  <th scope='row' key={i}>{i + 1}</th>
+                  <td>{e}</td>
+                </tr>
+              )
+            })
+          }
+        </MDBTableBody>
+      </MDBTable>
     </div>
   )
 }
