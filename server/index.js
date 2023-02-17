@@ -17,28 +17,34 @@ const io = socket(server, {
 let users = []
 let rooms = {}
 io.on('connection', socket => {
-  socket.on('message', data => {
-    io.emit('messageResponse', data)
-  })
+  // socket.on('message', data => {
+  //   io.emit('messageResponse', data)
+  // })
 
-  socket.on('typing', data => socket.broadcast.emit('typingResponse', data))
+  // socket.on('typing', data => socket.broadcast.emit('typingResponse', data))
 
-  socket.on('newUser', data => {
-    users.push(data)
-    console.log(data)
-    io.emit('newUserResponse', users)
-  })
+  // socket.on('newUser', data => {
+  //   users.push(data)
+  //   console.log(data)
+  //   io.emit('newUserResponse', users)
+  // })
 
   socket.on('joinRoom', data => {
-    console.log(data.roomId)
     if (!rooms[data.roomId]) {
       rooms[data.roomId] = []
     }
     rooms[data.roomId].push(data.user.name)
+    // rooms[data.roomId].push(data.socketID)
     socket.join(data.roomId)
     io.to(data.roomId).emit('user-update', {
       users: rooms[data.roomId]
     })
+    console.log("Room", rooms)
+  })
+
+  socket.on('user-Room', data => {
+    socket.join(data.roomId)
+    io.to(data.roomId).emit('user-list', { users: rooms[data.roomId] });
   })
 
   socket.on('disconnect', () => {
