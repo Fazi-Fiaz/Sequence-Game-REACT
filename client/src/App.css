@@ -431,3 +431,7 @@ img {
 .margin-bottom {
   margin: 45px 0 30px;
 }
+
+.capital {
+  text-transform: uppercase;
+}

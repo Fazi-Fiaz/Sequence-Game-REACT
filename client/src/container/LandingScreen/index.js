@@ -6,14 +6,12 @@ import TextInputField from '../../components/LandingComponent/TextInputField'
 import StartButton from '../../components/LandingComponent/StartButton'
 import { useNavigate } from 'react-router-dom'
 
-function LandingScreen ({ socket }) {
+function LandingScreen({ socket }) {
   const [isTeamSelected, setIsTeamSelected] = useState(false)
   const [noOfPlayers, setNoOfPlayers] = useState()
   const [noOfTeams, setNoOfTeams] = useState()
   const [startButton, setstartButton] = useState(true)
   const [playerName, setPlayerName] = useState('')
-  const [gameLink, setGameLink] = useState('')
-  const [adminplayer, setadminplayer] = useState(true)
   const navigate = useNavigate()
 
   const handlePlayerName = e => {
@@ -59,7 +57,8 @@ function LandingScreen ({ socket }) {
 
     navigate('/join-room/' + gameId, {
       state: {
-        isAuthor: true
+        isAuthor: true,
+        noOfPlayers: noOfPlayers
       }
     })
   }

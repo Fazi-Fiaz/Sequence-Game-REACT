@@ -9,35 +9,15 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 
 function Sequence() {
-  //   const [hasOpponent, setHasOpponent] = useState(false);
-  // const [room, setRoom] = useState(paramsRoom);
-
-
-  //   useEffect(() => {
-  //     socket.on('playerTurn', (json) => {
-  //       setTurnData(json);
-  //     });
-
-  //     socket.on('restart', () => {
-  //       restart();
-  //     });
-
-  //     socket.on('opponent_joined', () => {
-  //       setHasOpponent(true);
-  //       setShare(false);
-  //     });
-  // }, []);
-
   const location = useLocation();
-  const playerNames = location.state.playerName;
-  let playerName = [
-    playerNames,
-    'Rafay',
-    'Random',
-    'Random2',
-    'Random3'
-  ]
-  const noOfPlayers = location.state.noOfPlayers;
+  const playerName = location.state?.playerNames;
+  // let playerName = [
+  //   'Rafay',
+  //   'Random',
+  //   'Random2',
+  //   'Random3'
+  // ]
+  const noOfPlayers = location.state?.noOfPlayers;
   const noOfTeams = location.state.noOfTeams;
   const [numberOfPlayers, setNumberOfPlayers] = useState(noOfPlayers)
   const [shuffledCards, setShuffledCards] = useState([])
